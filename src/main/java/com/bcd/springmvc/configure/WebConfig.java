@@ -19,7 +19,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(getTokenHeader())
-                .addPathPatterns("/**")
+                .addPathPatterns("/user/*")
                 .excludePathPatterns(
                         "/robots.txt");
     }
@@ -29,8 +29,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public HandlerInterceptor getTokenHeader(){
         return new HeaderTokenInterceptor();
     }
-
-
 }
 
 

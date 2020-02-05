@@ -10,6 +10,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @RestController
 public class UserController {
@@ -22,10 +28,23 @@ public class UserController {
     }
 
     @RequestMapping("/other/login.action")
-    public String login(){
+    public ModelAndView login(HttpServletRequest request,HttpServletResponse response,
+                              ModelAndView model) throws ServletException, IOException {
 
-        System.out.println("hello");
+        model.setViewName( "forward:/user/login_success.action");
+        return model;
+    }
+
+    @RequestMapping("/user/login_success.action")
+    public  String loginSuccess(){
+
         return "success";
+    }
+
+    @RequestMapping("/other/login_failure.action")
+    public  String loginFailure(){
+
+        return "failure";
     }
 }
 
